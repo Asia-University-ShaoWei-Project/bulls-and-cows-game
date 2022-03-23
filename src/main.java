@@ -118,9 +118,6 @@ public class main extends JFrame {
                         switch (Option_key) {
                             case 0:
                                 home_page.setVisible(false);
-                                // play_page.setVisible(true);
-                                // play_page.requestFocus(true);
-
                                 input_name_page.setVisible(true);
                                 input_name_page.requestFocus(true);
                                 break;
