@@ -15,9 +15,9 @@ public class main extends JFrame {
     private JLayeredPane layeredPane = new JLayeredPane();
     private boolean teat = false; // 觸發首次完成後
 
-    /*--- Page1 ---*/
+    /*--- home_page ---*/
     // Object
-    private JPanel Page1 = new JPanel();
+    private JPanel home_page = new JPanel();
     private JLabel BGLable1 = new JLabel(new ImageIcon("img/background/init.jpg"));
     private JLabel title = new JLabel();
     private JButton jbnList[] = new JButton[3]; // 清單 按鈕[3]
@@ -32,25 +32,25 @@ public class main extends JFrame {
     private JLabel RandingBack = new JLabel(new ImageIcon("Back.png"));
     private JLabel BGL_Rand = new JLabel(new ImageIcon("img/background/mood.jpg"));
 
-    /*--- Page2 ---*/
+    /*--- input_name_page ---*/
     // Object
-    private JPanel Page2 = new JPanel();
+    private JPanel input_name_page = new JPanel();
     // ! input-name-frame??
     private JLabel BGLName = new JLabel(new ImageIcon("name.png"));
     private JLabel DBLable = new JLabel(new ImageIcon("DB_YourName.png")); // 無輸入警告標籤
     private Random random = new Random(); // 亂數
-    private JTextField NameIn = new JTextField(); // 輸入名字框
+    private JTextField input_name_box = new JTextField(); // 輸入名字框
     private JButton Ok = new JButton(), No = new JButton(); // 確認與返回按鈕
     // Variable
     private int b = 0; // 迴圈判斷
     private int random1[] = new int[4]; // 儲存亂數
     private int ChackUserInLengh = 0; // Chack長度變數
-    private String Name; // 暫定儲存Name
+    private String user_name; // 暫定儲存Name
     private boolean a = false; // 產生亂數迴圈判斷
 
-    /*--- Page3 ---*/
+    /*--- play_page ---*/
     // Object
-    private JPanel Page3 = new JPanel();
+    private JPanel play_page = new JPanel();
     private JPanel UseInputPanel = new JPanel(new GridLayout(2, 4)); // 輸入及箭頭版面
     private JPanel PromptPanel[] = new JPanel[100];
     private JPanel NotePanel = new JPanel();
@@ -87,21 +87,21 @@ public class main extends JFrame {
         this.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                Page1.requestFocus(true);
+                home_page.requestFocus(true);
             }
         });
-        layeredPane.add(Page1, JLayeredPane.MODAL_LAYER);
-        layeredPane.add(Page2, JLayeredPane.MODAL_LAYER);
-        layeredPane.add(Page3, JLayeredPane.MODAL_LAYER);
+        layeredPane.add(home_page, JLayeredPane.MODAL_LAYER);
+        layeredPane.add(input_name_page, JLayeredPane.MODAL_LAYER);
+        layeredPane.add(play_page, JLayeredPane.MODAL_LAYER);
         layeredPane.add(RandPanel, JLayeredPane.MODAL_LAYER);
         RandPanel.add(Recorde_Panel, JLayeredPane.MODAL_LAYER);
         RandPanel.add(RandingBack, JLayeredPane.MODAL_LAYER);
         RandPanel.add(BGL_Rand, JLayeredPane.DEFAULT_LAYER);
         BGL_Rand.setBounds(0, 0, 600, 300);
         Recorde_Panel.setOpaque(false);
-        Page1.setBounds(0, 0, 600, 300);
-        Page2.setBounds(0, 0, 600, 300);
-        Page3.setBounds(0, 0, 600, 300);
+        home_page.setBounds(0, 0, 600, 300);
+        input_name_page.setBounds(0, 0, 600, 300);
+        play_page.setBounds(0, 0, 600, 300);
         RandPanel.setBounds(0, 0, 600, 300);
         RandPanel.setLayout(null);
         Recorde_Panel.setBounds(100, 25, 390, 200);
@@ -109,20 +109,23 @@ public class main extends JFrame {
         BGLable1.setSize(this.getWidth(), this.getHeight());
         BGLName.setBounds(150, 0, 300, 270);
         DBLable.setSize(160, 100);
-        Page1.requestFocus(true);
-        Page1.addKeyListener(new KeyAdapter() {
+        home_page.requestFocus(true);
+        home_page.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
                 switch (e.getKeyCode()) {
                     case 10:
                         switch (Option_key) {
                             case 0:
-                                Page1.setVisible(false);
-                                Page2.setVisible(true);
-                                Page2.requestFocus(true);
+                                home_page.setVisible(false);
+                                // play_page.setVisible(true);
+                                // play_page.requestFocus(true);
+
+                                input_name_page.setVisible(true);
+                                input_name_page.requestFocus(true);
                                 break;
                             case 1:
-                                Page1.setVisible(false);
+                                home_page.setVisible(false);
                                 RandPanel.setVisible(true);
                                 RandPanel.requestFocus(true);
                                 break;
@@ -146,11 +149,11 @@ public class main extends JFrame {
                 }
             }
         });
-        // Page1--------------------------------------------------------------------
-        Page1.setVisible(true);
-        Page1.setLayout(null);
+        // home_page--------------------------------------------------------------------
+        home_page.setVisible(true);
+        home_page.setLayout(null);
         /*---set Title Type---*/
-        Page1.add(title);
+        home_page.add(title);
         title.setBounds(340, 0, 250, 70); // 邊界
         title.setIcon(new ImageIcon("title.png"));
         /*---set ListButton Type---*/
@@ -165,16 +168,16 @@ public class main extends JFrame {
             public void keyPressed(KeyEvent e) {
                 switch (e.getKeyCode()) {
                     case 27:
-                        Page1.setVisible(true);
+                        home_page.setVisible(true);
                         RandPanel.setVisible(false);
-                        Page1.requestFocus(true);
+                        home_page.requestFocus(true);
                         break;
                 }
             }
         });
         /*---set Start Type---*/
         P1Button_Icon();
-        Page1.add(jbnList[0], JLayeredPane.MODAL_LAYER);
+        home_page.add(jbnList[0], JLayeredPane.MODAL_LAYER);
         jbnList[0].setBounds(380, 80, 190, 50);
         jbnList[1].setIcon(new ImageIcon("record-y.png"));
         // ? origin
@@ -183,7 +186,7 @@ public class main extends JFrame {
         jbnList[0].setBorderPainted(false);
         jbnList[0].setContentAreaFilled(false);
         /*---set Randing Type---*/
-        Page1.add(jbnList[1], JLayeredPane.MODAL_LAYER);
+        home_page.add(jbnList[1], JLayeredPane.MODAL_LAYER);
         jbnList[1].setBounds(350, 140, 240, 50);
         jbnList[1].setIcon(new ImageIcon("record-w.png"));
         jbnList[1].setOpaque(false);
@@ -200,41 +203,41 @@ public class main extends JFrame {
                 Recorde_Panel.add(Recorde_Lable[i][j]);
             }
         }
-        Recorde_Lable[0][1].setText("Name");
+        Recorde_Lable[0][1].setText("username");
         Recorde_Lable[0][2].setText("Time");
         /*---set Exit Type---*/
-        Page1.add(jbnList[2], JLayeredPane.MODAL_LAYER);
+        home_page.add(jbnList[2], JLayeredPane.MODAL_LAYER);
         jbnList[2].setBounds(405, 200, 135, 50);
         jbnList[2].setIcon(new ImageIcon("exit-w.png"));
         jbnList[2].setOpaque(false);
         jbnList[2].setBorderPainted(false);
         jbnList[2].setContentAreaFilled(false);
-        Page1.add(BGLable1, JLayeredPane.DEFAULT_LAYER);
+        home_page.add(BGLable1, JLayeredPane.DEFAULT_LAYER);
 
-        // Page2--------------------------------------------------------------------
-        Page2.setVisible(false);
-        Page2.setLayout(null);
-        /*---set NameIn Type---*/
-        Page2.add(NameIn);
-        NameIn.setBounds(235, 149, 120, 35);
-        NameIn.setFont(new Font(null, Font.BOLD, 20));
-        Page2.addKeyListener(new KeyAdapter() {
+        // input_name_page--------------------------------------------------------------------
+        input_name_page.setVisible(false);
+        input_name_page.setLayout(null);
+        /*---set input_name_box Type---*/
+        input_name_page.add(input_name_box);
+        input_name_box.setBounds(235, 149, 120, 35);
+        input_name_box.setFont(new Font(null, Font.BOLD, 20));
+        input_name_page.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent keyEvent) {
-                if (NameIn.getText().length() < 8) {
+                if (input_name_box.getText().length() < 20) {
                     if (keyEvent.getKeyCode() >= 48 && keyEvent.getKeyCode() <= 57 // 判斷是否為數字或英文
-                            || keyEvent.getKeyCode() >= 65 && keyEvent.getKeyCode() <= 90
-                            || keyEvent.getKeyCode() >= 65 && keyEvent.getKeyCode() <= 90) {
-                        NameIn.setText(NameIn.getText() + keyEvent.getKeyChar());
-                    } // 取值在輸入內
-                    else if (keyEvent.getKeyCode() == 10) {
-                        if (NameIn.getText().length() != 0) {
+                    || keyEvent.getKeyCode() >= 65 && keyEvent.getKeyCode() <= 90
+                    || keyEvent.getKeyCode() >= 65 && keyEvent.getKeyCode() <= 90) {
+                input_name_box.setText(input_name_box.getText() + keyEvent.getKeyChar());
+            } // 取值在輸入內
+                    if (keyEvent.getKeyCode() == 10) {
+                        if (input_name_box.getText().length() != 0) {
                             if (teat == true) {
                                 ArrayLable = 0;
                                 NotePanel = new JPanel();
                                 NotePanel.setLayout(null);
                                 NotePanel.setBounds(15, 10, 196, 250);
-                                Page3.add(NotePanel, JLayeredPane.MODAL_LAYER);
+                                play_page.add(NotePanel, JLayeredPane.MODAL_LAYER);
                                 NotePanel.add(NotBookPage, JLayeredPane.MODAL_LAYER);
                                 NotBookPage.setBounds(97, 220, 30, 30);
                                 NotBookPage.setFont(new Font(null, Font.BOLD, 15));
@@ -244,14 +247,14 @@ public class main extends JFrame {
                                 // jLabel[0].setText("676767");
                                 // PromptPanel[0].add(jLabel[0]);
                                 NotePanel.setOpaque(false);
-                                Page3.add(BGL_P3, JLayeredPane.DEFAULT_LAYER);
+                                play_page.add(BGL_P3, JLayeredPane.DEFAULT_LAYER);
                                 NotePanel.revalidate();
                             }
-                            Name = NameIn.getText(); // 抓取Name
-                            Page2.setVisible(false);
-                            Page3.setVisible(true);
+                            user_name = input_name_box.getText(); // 抓取Name
+                            input_name_page.setVisible(false);
+                            play_page.setVisible(true);
                             DBLable.setVisible(false);
-                            Page3.requestFocus(true); // Page3 取得Focus權限
+                            play_page.requestFocus(true); // play_page 取得Focus權限
                             while (a == false) {
                                 /*---亂數產生---*/
                                 for (int RunRandom = 0; RunRandom < 4; RunRandom++) {
@@ -282,47 +285,50 @@ public class main extends JFrame {
                         } else {
                             DBLable.setVisible(true);
                         }
-                    } else if (keyEvent.getKeyCode() == 27) {
-                        Page2.setVisible(false);
-                        Page1.setVisible(true);
+                    }
+
+                    else 
+                    if (keyEvent.getKeyCode() == 27) {
+                        input_name_page.setVisible(false);
+                        home_page.setVisible(true);
                         DBLable.setVisible(false);
-                        Page1.requestFocus(true);
+                        home_page.requestFocus(true);
                     }
                 }
-                if (keyEvent.getKeyCode() == 8 && NameIn.getText().length() != 0) { // 使用者案Backspace時
-                    int lengh = NameIn.getText().length() - 1;
-                    NameIn.setText(NameIn.getText().substring(0, lengh));
+                if (keyEvent.getKeyCode() == 8 && input_name_box.getText().length() != 0) { // 使用者案Backspace時
+                    int lengh = input_name_box.getText().length() - 1;
+                    input_name_box.setText(input_name_box.getText().substring(0, lengh));
                 }
             }
         });
         /*---set DB Type---*/
-        Page2.add(DBLable);
+        input_name_page.add(DBLable);
         DBLable.setVisible(false);
         DBLable.setLocation(350, 2);
         /*---set OK or No Type---*/
-        Page2.addKeyListener(new KeyAdapter() {
+        input_name_page.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
 
             }
         });
-        Page2.add(Ok);
+        input_name_page.add(Ok);
         Ok.setBounds(503, 80, 90, 90);
         Ok.setIcon(new ImageIcon("into.png"));
         Ok.setBorderPainted(false);
         Ok.setContentAreaFilled(false);
         /*---- No -----*/
-        Page2.add(No);
+        input_name_page.add(No);
         No.setBounds(0, 80, 90, 90);
         No.setIcon(new ImageIcon("back.png"));
         No.setBorderPainted(false);
         No.setContentAreaFilled(false);
-        Page2.add(BGLName, JLayeredPane.MODAL_LAYER);
-        // Page3--------------------------------------------------------------------
-        Page3.setVisible(false);
-        Page3.setLayout(null);
-        Page3.setSize(600, 300);
-        Page3.add(UseInputPanel, JLayeredPane.MODAL_LAYER);
+        input_name_page.add(BGLName, JLayeredPane.MODAL_LAYER);
+        // play_page--------------------------------------------------------------------
+        play_page.setVisible(false);
+        play_page.setLayout(null);
+        play_page.setSize(600, 300);
+        play_page.add(UseInputPanel, JLayeredPane.MODAL_LAYER);
         UseInputPanel.setBounds(240, 3, 350, 160);
         UseInputPanel.setOpaque(false);
         /*---set UserLb Type---*/
@@ -356,7 +362,7 @@ public class main extends JFrame {
         jLabel[2].setIcon(new ImageIcon("sticky-p.png"));
         jLabel[3].setIcon(new ImageIcon("sticky-b.png"));
         /*---set Time Type---*/
-        Page3.add(TimeLable, JLayeredPane.MODAL_LAYER);
+        play_page.add(TimeLable, JLayeredPane.MODAL_LAYER);
         TimeLable.setBounds(334, 115, 160, 140);
         TimeLable.setFont(new Font(null, Font.BOLD, 90));
         TimeLable.setForeground(new Color(197, 197, 197));
@@ -368,20 +374,20 @@ public class main extends JFrame {
             }
         });
         /*---set TESTPanel Type---*/
-        Page3.add(NotePanel, JLayeredPane.MODAL_LAYER);
+        play_page.add(NotePanel, JLayeredPane.MODAL_LAYER);
         NotePanel.setBounds(15, 10, 196, 250);
         NotePanel.setLayout(null);
         NotePanel.setOpaque(false);
         BGLBook.setSize(220, 250);
         /*---set BGL_P3 Type---*/
-        Page3.add(BGL_P3, JLayeredPane.DEFAULT_LAYER);
+        play_page.add(BGL_P3, JLayeredPane.DEFAULT_LAYER);
         BGL_P3.setSize(600, 300);
         /*---set NotBookPage Type---*/
         NotBookPage.setBounds(97, 220, 30, 30);
         NotBookPage.setFont(new Font(null, Font.BOLD, 15));
         NotePanel.add(NotBookPage, JLayeredPane.MODAL_LAYER);
         /*----set CHECK and ActionListener---*/
-        Page3.addKeyListener(new KeyAdapter() {
+        play_page.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
                 GetKey = e.getKeyCode() - 48;
@@ -491,7 +497,7 @@ public class main extends JFrame {
         }
         /*----判斷Error變數成立---*/
         if (ChackUserInLengh > 0) {
-            JOptionPane.showMessageDialog(Page3, "請在空格處輸入"); // 呼叫對話框
+            JOptionPane.showMessageDialog(play_page, "請在空格處輸入"); // 呼叫對話框
             Input = false;
         } else if (ChackUserInLengh == 0) {
             Input = true;
@@ -532,7 +538,7 @@ public class main extends JFrame {
                 P2Time.stop();
                 jlbPrompt[ArrayLable].setText(ALL + " " + " ： " + "O");
                 /*----全對時對話框設定---*/
-                int Response = JOptionPane.showOptionDialog(Page3, "答案為:" +
+                int Response = JOptionPane.showOptionDialog(play_page, "答案為:" +
                         ALL + "\n" + "你用了 " + TimeLable.getText() + " 秒完成",
                         "猜中了!!", JOptionPane.YES_OPTION, JOptionPane.QUESTION_MESSAGE, null,
                         options, options[0]);
@@ -540,13 +546,13 @@ public class main extends JFrame {
                     i1 = 1;
                 } // 記錄滿時 i1=1 為覆蓋紀錄
                 if (Recorde_Lable[i1][2].getText().length() == 0) {
-                    Recorde_Lable[i1][1].setText(Name);
+                    Recorde_Lable[i1][1].setText(user_name);
                     Recorde_Lable[i1][2].setText(TimeLable.getText());
                     Recorde_Lable[i1][3].setText(" [ " + own + " " + two + " " + three + " " +
                             four + " ] ");
                     i1++;
                 } else if (Recorde_Lable[i1][2].getText().length() != 0) {
-                    Recorde_Lable[i1][1].setText(Name);
+                    Recorde_Lable[i1][1].setText(user_name);
                     Recorde_Lable[i1][2].setText(TimeLable.getText());
                     Recorde_Lable[i1][3].setText(" [ " + own + " " + two + " " + three + " " +
                             four + " ] ");
@@ -555,7 +561,7 @@ public class main extends JFrame {
                 NotePanel.removeAll();
                 teat = true;
                 TimeLable.setText("0");
-                NameIn.setText("");
+                input_name_box.setText("");
                 Time = 1;
                 IVisible = 0;
                 ALL = "";
@@ -565,13 +571,13 @@ public class main extends JFrame {
                 four = "";
                 I = 0;
                 if (Response == 0) { // 回應確認
-                    Page3.setVisible(false);
-                    Page1.setVisible(true);
+                    play_page.setVisible(false);
+                    home_page.setVisible(true);
                     NotBookPage.setText("P.1");
                     for (int i = 0; i < 4; i++) {
                         UserLb[i].setIcon(null);
                     }
-                    Page1.requestFocus(true);
+                    home_page.requestFocus(true);
                 }
                 /*-----------------------*/
             } else if (AnswerA != 0 && AnswerB == 0) {
