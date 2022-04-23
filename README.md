@@ -1,8 +1,7 @@
-# bulls-and-cows-game
+# Bulls and cows game
 
-Use JFrame to make the game
+Use the JFrame to make a game
 
-- demo [#video](https://youtu.be/yRId4eCPJyo)
-- 進階程式設計(大一下學期)
+- Demo [#video](https://youtu.be/yRId4eCPJyo)
+- Course: 進階程式設計(大一下學期)
 - Programming language: Java
-- Tech: JFrame
